@@ -14,9 +14,16 @@ let artistasAPIServices = {
         }
     },
 
- 
+    create: async function(newArtist) {
 
-    
+        try {
+            return await db.Artista.create(newArtist);
+        } catch (error) {
+            console.log('Error al crear el artista ', error);
+            return {status:500}
+    }
+
+    }
 
 
 

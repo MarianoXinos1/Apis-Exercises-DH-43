@@ -17,8 +17,15 @@ const artistasAPIController = {
     },
 
 
-    create: (req,res) => {
-        return res.send('Puedes agregar un nuevo artista a nuestra base de datos. Para porder utilizar esta API, debes ejecutar la ruta /artistas/create/id desde la plataforma POSTMAN');
+    create: async function(req,res) {
+        
+        try{ 
+            const newArtist = await artistasAPIServices.create(req.body);
+            return res.status(201).json(newArtist);
+        } catch (error){
+            console.log('Error Controller,error');
+            return {status:500}
+        }
 
     },
     update: (req,res) => {
