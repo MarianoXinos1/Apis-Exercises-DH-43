@@ -5,7 +5,7 @@ const e = require('express');
 
 const artistasAPIController = {
 
-    'list': async function(req, res) {
+    list: async function(req, res) {
 
         try {
             let list = await artistasAPIServices.listArtists();
@@ -16,8 +16,10 @@ const artistasAPIController = {
         }
     },
 
+
     create: (req,res) => {
         return res.send('Puedes agregar un nuevo artista a nuestra base de datos. Para porder utilizar esta API, debes ejecutar la ruta /artistas/create/id desde la plataforma POSTMAN');
+
     },
     update: (req,res) => {
         return res.send('Puedes modifcar el nombre del artista en nuestra base de datos. Para porder utilizar esta API, debes ejecutar la ruta /artistas/update/id desde la plataforma POSTMAN');
