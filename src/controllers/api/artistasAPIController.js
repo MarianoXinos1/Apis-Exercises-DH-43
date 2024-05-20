@@ -8,11 +8,11 @@ const artistasAPIController = {
     list: async function(req, res) {
 
         try {
-            let list = await artistasAPIServices.listArtists();
+            const list = await artistasAPIServices.listArtists();
             return res.json(list);
         } catch (error){
             console.log(error);
-            return res.status(500).send({ message: 'Error al obtener todos los artistas'})
+            return { status:500 }
         }
     },
 

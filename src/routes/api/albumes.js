@@ -7,6 +7,6 @@ const albumesAPIController = require('../../controllers/api/albumesAPIController
 router.get('/', albumesAPIController.listAlbums);
 
 //Detalle de un ambum en base a un artista indicado
-router.get('/:id', albumesAPIController.detail);
+router.get('/:id', albumesAPIController.detailByArtistId);
 
 module.exports = router;

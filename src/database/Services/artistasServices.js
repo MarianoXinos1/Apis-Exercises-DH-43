@@ -6,7 +6,7 @@ let artistasAPIServices = {
     listArtists: async function() {
         
         try {
-            let artist = await db.Artista.findAll();
+            const artist = await db.Artista.findAll();
             return artist;
         } catch( error){
             console.log('Error al traer todos los artistas ', error);

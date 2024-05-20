@@ -8,16 +8,25 @@ const albumesAPIController = {
     listAlbums: async function(req, res) {
 
         try {
-            let albums = await artistasAPIServices.listAlbums();
+            const albums = await artistasAPIServices.listAlbums();
             return res.json(albums);
         } catch (error) {
             console.log( 'Error Controller',error);
+            return { status:500 }
         }
     }, 
 
-    'detail': (req, res) => {
-        return res.send('Devuelve el detalle de un album asociado a un (" id ") de un artista indicado en la ruta o en la query string.');
-    }
+    detailByArtistId: async function(req, res) {
+         
+        try {
+            const album = await artistasAPIServices.detailByArtistId(req.params.id);
+            return res.json(album);
+        } catch (error) {
+            console.log('Error Controller', error);
+            return { status:500 }
+        }
+        
+    },
 }
 
 module.exports = albumesAPIController;
