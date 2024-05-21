@@ -29,12 +29,24 @@ let artistasAPIServices = {
 
         try {
            const artist=  await db.Artista.findByPk(artistId);  
-           await artist.update(updateData);
+           await artist.update(updateData);                         // Se pueden poner varios await seguidos
            return artist;
 
         } catch (error) {
             console.log('Error al actualizar el artista ', error);
             return {status:500}
+        }
+    },
+
+    destroy: async function(artistId) {
+
+        try {
+            const artist = await db.Artista.destroy({
+                where: { id: artistId } });
+                return {status:200}
+            } catch (error) {
+                console.log('Error al eliminar el artista ', error);
+                return {status:500}
         }
     }
 

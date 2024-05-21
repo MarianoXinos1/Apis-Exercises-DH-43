@@ -39,12 +39,17 @@ const artistasAPIController = {
                 console.log('Error Controller', error);
                 return {status:500}
             }
-        
-        
     },
 
-    destroy: (req,res) => {
-        return res.send('Puedes eliminar un artista a nuestra base de datos. Para porder utilizar esta API, debes ejecutar la ruta /artistas/delete/id desde la plataforma POSTMAN');
+    destroy: async function(req,res) {
+        
+        try {
+            const artist = await artistasAPIServices.destroy(req.params.id);
+            return res.status(200).json(artist);
+        } catch (error) {
+            console.log('Error Controller', error);
+            return {status:500}
+        }
     }
 }
 module.exports = artistasAPIController;
