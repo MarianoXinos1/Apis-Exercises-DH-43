@@ -28,9 +28,21 @@ const artistasAPIController = {
         }
 
     },
-    update: (req,res) => {
-        return res.send('Puedes modifcar el nombre del artista en nuestra base de datos. Para porder utilizar esta API, debes ejecutar la ruta /artistas/update/id desde la plataforma POSTMAN');
+    update: async function(req,res) {
+            const artistId= req.params.id;
+            const updateData = req.body;
+
+            try {
+                const updateArtist = await artistasAPIServices.update(artistId, updateData);
+                return res.status(200).json(updateArtist);
+            } catch (error) {
+                console.log('Error Controller', error);
+                return {status:500}
+            }
+        
+        
     },
+
     destroy: (req,res) => {
         return res.send('Puedes eliminar un artista a nuestra base de datos. Para porder utilizar esta API, debes ejecutar la ruta /artistas/delete/id desde la plataforma POSTMAN');
     }

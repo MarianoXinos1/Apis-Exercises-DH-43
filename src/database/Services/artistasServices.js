@@ -23,8 +23,20 @@ let artistasAPIServices = {
             return {status:500}
     }
 
-    }
+    },
 
+    update: async function(artistId, updateData) {
+
+        try {
+           const artist=  await db.Artista.findByPk(artistId);  
+           await artist.update(updateData);
+           return artist;
+
+        } catch (error) {
+            console.log('Error al actualizar el artista ', error);
+            return {status:500}
+        }
+    }
 
 
 }
